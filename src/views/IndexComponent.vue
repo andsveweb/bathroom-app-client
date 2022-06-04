@@ -6,10 +6,17 @@
       <router-link class="router-link" :to="{ name: 'create' }"
         >Skapa ny uträkning</router-link
       >
+      <!--show loged in user email-->
+      
+     
+
+      
     </div>
     <table>
       <thead>
         <tr>
+          <!--show logedin user-->
+          
           <th>Post</th>
           <th>Namn</th>
           <th>Redigera</th>
@@ -47,10 +54,12 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
       posts: [],
+      name: null,
     };
   },
   // get all posts
@@ -59,6 +68,7 @@ export default {
     this.axios.get(uri).then((response) => {
       this.posts = response.data;
     });
+    
   },
   // get the id from the url
   methods: {
@@ -69,7 +79,10 @@ export default {
       });
     },
   },
+  
+
 };
+
 </script>
 
 <style scoped>

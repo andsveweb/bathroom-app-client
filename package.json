@@ -17,7 +17,6 @@
     "vue": "^3.2.13",
     "vue-authenticate": "^1.5.0",
     "vue-axios": "^3.4.1",
-    "vue-expandable-image": "^0.1.0",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.2"
   },

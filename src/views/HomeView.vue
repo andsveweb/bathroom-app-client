@@ -154,8 +154,19 @@
         </button>
         <div class="showStep6" v-if="showStep6">
           <p class="step-information-text"></p>
+          <div id="app">
+            <img class="images" src="../assets/images/kvalitetsdokument_2022.jpg" />
+          </div>
           <p>
-            
+            När badrummet slutligen är klart kan ett intyg skrivas av hantverkaren. På detta intyg säkerställer han att badrummet är 
+            korrekt gjort och beskriver vilket typ av tätskiktssystem som användts på golv och väggar.
+            samt samt om golvbrunnen är bytt.
+            <br> <br>
+            Garantin gäller i tio år från färdigt badrum såvida allt är korrekt. Detta intyget skickas sen till beställaren samt byggkeramikrådet för lagring.
+            Om det nu blir något läkage eller annat fel på badrummet så kontrolleras detta av försökringsbolaget. Kontrollen görs för att se om hantverkaren har gjort ett dåligt arbete eller vad som orsakade läkaget.
+            Det kan bli hantverkaren som får stå för omarbetet om han gjort fel. I annat fall går det på hans försäkring. 
+
+
           </p>
         </div>
       </div>
@@ -178,6 +189,7 @@ export default {
       showStep6: false, 
     };
   },
+  
   components: {},
 };
 </script>

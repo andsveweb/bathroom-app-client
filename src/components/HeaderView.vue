@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <h1>Badrums information</h1>
-        
+         <!-- <p class="logedinuser">Inloggad som: {{ $store.state.user.email }}</p> -->
       <nav>
         <router-link class="router-link" to="/">Hem</router-link>
         <router-link class="router-link" :to="{ name: 'roules' }"
@@ -30,14 +30,23 @@
 import { onBeforeMount } from "vue";
 import { useStore } from "vuex";
 
+
+
 export default {
   setup() {
     const store = useStore();
 //Fetching user data
     onBeforeMount(() => { 
-      store.dispatch("fetchUser"); 
+      store.dispatch("fetchUser");
+     
+      
+      
+
+      
     });
+
   },
+  
   name: "HeaderView",
   //Go back and forward in history
   methods: {
@@ -48,12 +57,21 @@ export default {
       this.$router.forward();
     },
   },
+  // v-if logedin user
+  
+  
+  
 };
 
 </script>
 
 <style scoped>
-
+.logedinuser {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1ea334;
+}
 h1 {
   color: white;
 }

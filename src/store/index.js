@@ -8,8 +8,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  
-} from "firebase/auth";
+  getAuth,
+  onAuthStateChanged,
+
+} 
+
+
+from "firebase/auth";
 /* creating store */
 export default createStore({
   state: {
@@ -19,17 +24,22 @@ export default createStore({
   mutations: {
     SET_USER(state, user) {
       state.user = user;
+      
     },
     CLEAR_USER(state) {
       state.user = null;
     },
   },
+
+  
+  
 /* actions for login and  with firebase and error handling */ 
   actions: {
     async login({ commit }, details) {
       const { email, password } = details;
       try {
         await signInWithEmailAndPassword(auth, email, password); //sign in with email and password
+        
       } catch (error) { 
         switch (error.code) { //switch case for error handling
           case "auth/user-not-found": 
@@ -82,6 +92,7 @@ export default createStore({
   
     fetchUser({ commit }) {
       auth.onAuthStateChanged(async (user) => { // method from firebase 
+        
         if (user === null) {
           commit("CLEAR_USER");   // if user is null, clear user
         } else {
@@ -95,3 +106,10 @@ export default createStore({
     },
   },
 });
+  //if user is loged in show user email if not loged in show nothing
+  
+
+
+  
+
+
