@@ -2,16 +2,15 @@
   <div>
     <div class="header">
       <h1>Badrums information</h1>
-         <!-- <p class="logedinuser">Inloggad som: {{ $store.state.user.email }}</p> -->
-         <!--display current user-->
-          
+      <!-- <p class="logedinuser">Inloggad som: {{ $store.state.user.email }}</p> -->
+      <!--display current user-->
+
       <nav>
         <router-link class="router-link" to="/">Hem</router-link>
         <router-link class="router-link" :to="{ name: 'roules' }"
-        
           >Branschregler</router-link
         >
-        
+
         <router-link class="router-link" :to="{ name: 'create' }"
           >Räkna</router-link
         >
@@ -19,15 +18,18 @@
           >Min sida</router-link
         >
       </nav>
-     
-      <button v-if="user" class="log-btn" @click="$store.dispatch('logout')">Logout</button> 
-    
+
+      <button v-if="user" class="log-btn" @click="$store.dispatch('logout')">
+        Logga ut
+      </button>
+      <router-link class="router-link-logout" v-else :to="{ name: 'login' }">
+        Logga in
+      </router-link>
 
       <button class="log-btn" @click="back">Framåt</button>
       <button class="log-btn" @click="forward">Tillbaka</button>
     </div>
-    <router-view /> 
-    
+    <router-view />
   </div>
 </template>
 
@@ -36,39 +38,33 @@
 import { onBeforeMount } from "vue";
 import { useStore } from "vuex";
 
-
-
 export default {
-  
   setup() {
     const store = useStore();
-//Fetching user data
-    onBeforeMount(() => { 
+    //Fetching user data
+    onBeforeMount(() => {
       store.dispatch("fetchUser");
     });
   },
+ // toggle logout button
   computed: {
     user() {
       return this.$store.state.user;
-    }
+    },
   },
-  
+
   name: "HeaderView",
   //Go back and forward in history
   methods: {
     back() {
-      this.$router.back(); 
+      this.$router.back();
     },
     forward() {
       this.$router.forward();
     },
   },
   // v-if logedin user
-  
-  
-  
 };
-
 </script>
 
 <style scoped>
@@ -81,6 +77,20 @@ export default {
 h1 {
   color: white;
 }
+.router-link-logout {
+  color: white;
+  background-color: #fcfcfc;
+  padding: 10px;
+   border-radius: 5px;
+   text-decoration: none;
+  color: black;
+   text-align: center;
+}
+.router-link-logout:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
 
 button {
   margin: 0 10px;
@@ -114,6 +124,7 @@ button {
 nav {
   padding: 30px;
 }
+
 
 nav a {
   font-weight: bold;
