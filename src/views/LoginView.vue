@@ -16,7 +16,7 @@
         />
         <input type="submit" value="Registrera" />
       </form>
-
+  
       <form class="login" @submit.prevent="login">
         <h2>Logga in</h2>
         <input type="email" placeholder="Epost" v-model="login_form.email" />
@@ -28,6 +28,7 @@
         <input type="submit" value="Logga in" />
       </form>
     </section>
+    
   </main>
 </template>
 
@@ -44,10 +45,12 @@ export default {
 // value of the loginform
     const login = () => {
       store.dispatch("login", login_form.value); 
+      
     };
 // value of the registerform
     const register = () => {
       store.dispatch("register", register_form.value); 
+
     };
 
     return {

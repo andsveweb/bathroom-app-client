@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <HeaderView />
 
     <FooterView />

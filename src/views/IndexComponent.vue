@@ -1,21 +1,18 @@
 <template>
   <div class="posts">
     <h1>Min sida</h1>
+    <!--Show loged in users email-->
+    <p class="logedinuser">Inloggad som: {{ $store.state.user.email }}</p>
 <!--Link to page create-->
     <div class="router-link-class"> 
       <router-link class="router-link" :to="{ name: 'create' }"
         >Skapa ny uträkning</router-link
       >
-      <!--show loged in user email-->
-      
-     
-
-      
     </div>
     <table>
       <thead>
         <tr>
-          <!--show logedin user-->
+          
           
           <th>Post</th>
           <th>Namn</th>
@@ -44,6 +41,7 @@
           </td>
           <td>
             <button class="delete" @click.prevent="deletePost(post._id)"> 
+            
               Radera
             </button>
           </td>
@@ -86,6 +84,13 @@ export default {
 </script>
 
 <style scoped>
+.logedinuser {
+  color: #4caf50;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
 h1 {
   text-align: center;
   margin-top: 1rem;

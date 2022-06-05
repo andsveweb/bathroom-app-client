@@ -3,11 +3,15 @@
     <div class="header">
       <h1>Badrums information</h1>
          <!-- <p class="logedinuser">Inloggad som: {{ $store.state.user.email }}</p> -->
+         <!--display current user-->
+          
       <nav>
         <router-link class="router-link" to="/">Hem</router-link>
         <router-link class="router-link" :to="{ name: 'roules' }"
+        
           >Branschregler</router-link
         >
+        
         <router-link class="router-link" :to="{ name: 'create' }"
           >Räkna</router-link
         >
@@ -15,13 +19,15 @@
           >Min sida</router-link
         >
       </nav>
-      <button class="log-btn" @click="$store.dispatch('logout')">Logout</button> 
-      <button class="log-btn" @click="$store.dispatch('login')">Login</button>
+     
+      <button v-if="user" class="log-btn" @click="$store.dispatch('logout')">Logout</button> 
+    
 
       <button class="log-btn" @click="back">Framåt</button>
       <button class="log-btn" @click="forward">Tillbaka</button>
     </div>
     <router-view /> 
+    
   </div>
 </template>
 
@@ -33,18 +39,18 @@ import { useStore } from "vuex";
 
 
 export default {
+  
   setup() {
     const store = useStore();
 //Fetching user data
     onBeforeMount(() => { 
       store.dispatch("fetchUser");
-     
-      
-      
-
-      
     });
-
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
   },
   
   name: "HeaderView",

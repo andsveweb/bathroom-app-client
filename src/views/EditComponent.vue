@@ -6,6 +6,11 @@
       <h1 class="information-text">
        Ändra i din uträkning
       </h1>
+      <div class="router-link-class">
+          <router-link class="router-link" :to="{ name: 'posts' }"
+            >Tllbaka</router-link
+          >
+        </div>
     </div>
     <form id="addPost" method="get" @submit.prevent="updatePost">
 
@@ -118,6 +123,33 @@
 </script>
 
 <style scoped>
+.router-link-class {
+  text-align: center;
+  background-color: #4caf50;
+  background-color: #4caf50;
+  align-items: center;
+  margin: 20px auto;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  max-width: 100px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.router-link {
+  text-decoration: none;
+  color: white;
+}
+
+.router-link-class:hover {
+  background-color: rgb(79, 231, 86);
+}
   calculate-container {
     display: flex;
     height: 100vh;
