@@ -15,10 +15,8 @@
     <!--copy right-->
     <div class="footer-right">
       <p>
-        &copy; 2022-06-02 by
-        
+        &copy; 2022-06-02 Av
           <span>Andreas Svensson</span>
-      
       </p>
     </div>
     

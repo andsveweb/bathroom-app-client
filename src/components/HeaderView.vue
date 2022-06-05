@@ -2,9 +2,7 @@
   <div>
     <div class="header">
       <h1>Badrums information</h1>
-      <!-- <p class="logedinuser">Inloggad som: {{ $store.state.user.email }}</p> -->
-      <!--display current user-->
-
+  
       <nav>
         <router-link class="router-link" to="/">Hem</router-link>
         <router-link class="router-link" :to="{ name: 'roules' }"
@@ -46,7 +44,13 @@ export default {
       store.dispatch("fetchUser");
     });
   },
- // toggle logout button
+  data: () => {
+    return {
+      mobileView: false,
+      showNav: false,
+    }
+  },
+  // toggle logout button
   computed: {
     user() {
       return this.$store.state.user;
@@ -63,7 +67,6 @@ export default {
       this.$router.forward();
     },
   },
-  // v-if logedin user
 };
 </script>
 
@@ -80,18 +83,15 @@ h1 {
 .router-link-logout {
   color: white;
   background-color: #fcfcfc;
-  padding: 10px;
-   border-radius: 5px;
-   text-decoration: none;
+  border-radius: 5px;
+  text-decoration: none;
   color: black;
-   text-align: center;
+  text-align: center;
 }
 .router-link-logout:hover {
   background-color: #4caf50;
   color: white;
-  
 }
-
 
 button {
   margin: 0 10px;
@@ -117,17 +117,14 @@ button {
 .router-link:hover {
   background-color: rgb(217, 250, 215);
   color: rgb(2, 2, 2);
-  
 }
 .log-btn:hover {
   background-color: rgb(21, 168, 53);
   color: rgb(255, 255, 255);
-  
 }
 nav {
   padding: 30px;
 }
-
 
 nav a {
   font-weight: bold;
@@ -140,6 +137,5 @@ nav a {
 nav a.router-link-exact-active {
   color: rgb(14, 13, 13);
   background: rgb(217, 250, 215);
-  
 }
 </style>

@@ -12,8 +12,6 @@
     <table>
       <thead>
         <tr>
-          
-          
           <th>Post</th>
           <th>Namn</th>
           <th>Redigera</th>
@@ -60,8 +58,7 @@ export default {
       name: null,
     };
   },
-  // get all posts from current user in database
-  
+  // get all posts from database
   created() {
     let uri = "//localhost:4000/posts"; 
     this.axios.get(uri).then((response) => {
@@ -99,6 +96,23 @@ h1 {
 table {
   margin-top: 3rem;
 }
+@media screen and (max-width: 600px) {
+ 
+  table {
+    white-space: nowrap;
+    margin: auto;
+    max-width: 300px;
+  }
+  
+  table th {
+    display: none;
+  }
+
+  table td {
+    display: block;
+  }
+}
+
 .post-title {
   text-align: center;
   font-size: 1.3em;
