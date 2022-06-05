@@ -60,7 +60,8 @@ export default {
       name: null,
     };
   },
-  // get all posts
+  // get all posts from current user in database
+  
   created() {
     let uri = "//localhost:4000/posts"; 
     this.axios.get(uri).then((response) => {

@@ -230,6 +230,7 @@ p {
   background-color: #e7e7e7;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
   border-radius: 7px;
+  margin-top: 20px;
 
   
 }

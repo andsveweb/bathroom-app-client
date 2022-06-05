@@ -26,8 +26,8 @@
         Logga in
       </router-link>
 
-      <button class="log-btn" @click="back">Framåt</button>
-      <button class="log-btn" @click="forward">Tillbaka</button>
+      <button class="log-btn" @click="back">Tillbaka</button>
+      <button class="log-btn" @click="forward">Frammåt</button>
     </div>
     <router-view />
   </div>
@@ -89,6 +89,7 @@ h1 {
 .router-link-logout:hover {
   background-color: #4caf50;
   color: white;
+  
 }
 
 
@@ -116,10 +117,12 @@ button {
 .router-link:hover {
   background-color: rgb(217, 250, 215);
   color: rgb(2, 2, 2);
+  
 }
 .log-btn:hover {
   background-color: rgb(21, 168, 53);
   color: rgb(255, 255, 255);
+  
 }
 nav {
   padding: 30px;
@@ -137,5 +140,6 @@ nav a {
 nav a.router-link-exact-active {
   color: rgb(14, 13, 13);
   background: rgb(217, 250, 215);
+  
 }
 </style>

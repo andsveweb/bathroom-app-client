@@ -86,9 +86,10 @@ h2 {
 
 h1 {
   color: rgb(197, 46, 46);
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 1rem 1rem;
 }
+
 
 input {
   appearance: none;
@@ -100,9 +101,11 @@ input {
   max-width: 400px;
   margin: 0 auto;
   font-size: 1.5rem;
+  
   margin-bottom: 1rem;
   padding: 0.5rem 0rem;
 }
+
 
 input:focus:not([type="submit"]) {
   opacity: 1;
@@ -130,6 +133,11 @@ form.login input[type="submit"] {
   border-radius: 0.5rem;
   cursor: pointer;
   text-transform: uppercase;
+  width: 40%;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+form.login input[type="submit"]:hover {
+  background-color: #4caf50;
 }
 
 form.register input[type="submit"] {
@@ -140,5 +148,10 @@ form.register input[type="submit"] {
   border-radius: 0.5rem;
   cursor: pointer;
   text-transform: uppercase;
+  width: 40%;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+form.register input[type="submit"]:hover {
+  background-color: #4caf50;
 }
 </style>
