@@ -116,8 +116,18 @@
         <h2>
           {{ formatNumberTo(resulttilewallquantity) || "0" }} st kakelplattor
         </h2>
+        <label>Antal platter vägg plus extra för skärning</label>
+        <h2 class="underline">
+          {{ formatNumberTo(resulttilewallquantitymore) || "0" }} st
+          kakelplattor + extra
+        </h2>
         <label>Antal plattor golv</label>
         <h2>{{ formatNumberTo(resulttilefloorquantity) }} st kakelplattor</h2>
+        <label>Antal plattor golv plus extra för skärning</label>
+        <h2 class="underline">
+          {{ formatNumberTo(resulttilefloorquantitymore) || "0" }} st
+          kakelplattor + extra
+        </h2>
       </div>
     <!--calculating total price with material-->
       <div class="form-calculate">
@@ -192,6 +202,68 @@ export default {
     resulttilewallquantity() {
       return this.resultareawall / this.tilesizewall; //calculation for quantity of tile wall
     },
+    resulttilewallquantitymore() {
+      if (this.tilesizewall < 0.02) {
+        return this.resulttilewallquantity * 1.1;
+      } else {
+        if (this.tilesizewall < 0.04) {
+          return this.resulttilewallquantity * 1.12;
+        } else {
+          if (this.tilesizewall < 0.06) {
+            return this.resulttilewallquantity * 1.14;
+          } else {
+            if (this.tilesizewall < 0.08) {
+              return this.resulttilewallquantity * 1.16;
+            } else {
+              if (this.tilesizewall < 0.1) {
+                return this.resulttilewallquantity * 1.18;
+              } else {
+                if (this.tilesizewall < 0.12) {
+                  return this.resulttilewallquantity * 1.2;
+                } else {
+                  if (this.tilesizewall < 3.0) {
+                    return this.resulttilewallquantity * 1.25;
+                  } else {
+                  }
+                }
+              }
+            }
+          }
+          return 0;
+        }
+      }
+    },
+    resulttilefloorquantitymore() {
+      if (this.tilesizefloor < 0.02) {
+        return this.resulttilefloorquantity * 1.1;
+      } else {
+        if (this.tilesizefloor < 0.04) {
+          return this.resulttilefloorquantity * 1.12;
+        } else {
+          if (this.tilesizefloor < 0.06) {
+            return this.resulttilefloorquantity * 1.14;
+          } else {
+            if (this.tilesizefloor < 0.08) {
+              return this.resulttilefloorquantity * 1.16;
+            } else {
+              if (this.tilesizefloor < 0.1) {
+                return this.resulttilefloorquantity * 1.18;
+              } else {
+                if (this.tilesizefloor < 0.12) {
+                  return this.resulttilefloorquantity * 1.2;
+                } else {
+                  if (this.tilesizefloor < 3.0) {
+                    return this.resulttilefloorquantity * 1.25;
+                  } else {
+                  }
+                }
+              }
+            }
+          }
+          return 0;
+        }
+      }
+    },
     resulttilefloorquantity() {
       return this.resultareafloor / this.tilesizefloor; //calculation for quantity of tile floor
     },
@@ -228,6 +300,10 @@ export default {
 </script>
 
 <style scoped>
+.underline {
+  text-decoration: underline;
+  font-weight: bold;
+}
 .router-link-class {
   text-align: center;
   background-color: #4caf50;
@@ -385,6 +461,7 @@ select {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
+  
 }
 
 .result-text {

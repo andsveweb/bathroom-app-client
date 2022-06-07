@@ -14,7 +14,7 @@
           kakling
         </p>
       </div>
-     
+
       <form id="addPost" method="get" @submit.prevent="addPost">
         <div class="form-calculate">
           <p>Din uträkning</p>
@@ -23,7 +23,7 @@
           <label>Information om din uträkning</label>
           <textarea placeholder="Information" v-model="post.body"> </textarea>
         </div>
-        
+        <!--square meter wall-->
         <div class="form-calculate">
           <p>Kvadratmeteryta vägg</p>
 
@@ -34,7 +34,7 @@
             placeholder="Höjd i meter"
             v-model="post.wallheight"
           />
-          <label>Längd i meter</label>
+          <label>Längd i meter runt hela badrummet</label>
           <input
             type="number"
             step="any"
@@ -43,7 +43,7 @@
           />
         </div>
 
-        <!--Kvadratmeteryta golv -->
+        <!--squarmeter floor -->
         <div class="form-calculate">
           <p>Kvadratmeteryta golv</p>
           <label>Bredd i meterr</label>
@@ -62,7 +62,7 @@
           />
         </div>
 
-        <!--storlek kakelplatta vägg -->
+        <!--tilesize wall -->
         <div class="form-calculate">
           <p>Storlek på kakelplatta vägg</p>
           <label>Bredden kakalplatta vägg i cm</label>
@@ -80,10 +80,10 @@
             placeholder="Ange längden på kakelplatta väg"
             v-model="post.tilesizewalllength"
           />
-          <p>Kakel vägg {{ formatNumber(tilesizewall) }} kvm</p>
+          <p>En platta {{ formatNumber(tilesizewall) }} kvm</p>
         </div>
 
-        <!--storlek kakelplatta golv -->
+        <!--tilesize floor -->
         <div class="form-calculate">
           <p>Storlek på kakelplatta golv</p>
           <label>Bredden kakalplatta golv i cm</label>
@@ -100,11 +100,12 @@
             placeholder="Ange längden på kakelplatta golv"
             v-model="post.tilesizefloorlength"
           />
-          <p>Kakel golv {{ formatNumber(tilesizefloor) }} kvm</p>
+          <p>En platta {{ formatNumber(tilesizefloor) }} kvm</p>
         </div>
       </form>
       <input type="submit" form="addPost" class="button-save-result" />
     </div>
+
     <!--Results -->
     <div class="result">
       <div class="form-calculate">
@@ -116,34 +117,48 @@
         <h2>{{ formatNumber(resultareafloor) || "0" }}</h2>
         <label>Golv plus väggarea</label>
         <h2>{{ formatNumber(resultareatotal) || "0" }} kvm</h2>
-        <label>Antal plattor vägg</label>
+        <label>Antal plattor vägg exakt</label>
         <h2>
           {{ formatNumberTo(resulttilewallquantity) || "0" }} st kakelplattor
         </h2>
-        <label>Antal platter plus extra för skärning</label>
-        <h2>
-          {{ formatNumberTo(resulttilewallquantitymore) || "0" }}  st kakelplattor + extra
+        <label>Antal platter vägg plus extra för skärning</label>
+        <h2 class="underline">
+          {{ formatNumberTo(resulttilewallquantitymore) || "0" }} st
+          kakelplattor + extra
         </h2>
-        <label>Antal plattor golv</label>
-        <h2>{{ formatNumberTo(resulttilefloorquantity) || "0" }} st kakelplattor</h2> 
+        <label>Antal plattor golv exakt</label>
+        <h2>
+          {{ formatNumberTo(resulttilefloorquantity) || "0" }} st kakelplattor
+        </h2>
+        <label>Antal plattor golv plus extra för skärning</label>
+        <h2 class="underline">
+          {{ formatNumberTo(resulttilefloorquantitymore) || "0" }} st
+          kakelplattor + extra
+        </h2>
       </div>
       <div class="form-calculate">
+
+        <!---sealent and material price -->
         <p>Material och pris</p>
-        <label>Tätskikt</label>
+        <label>Tätskiktsfolie</label>
         <h2>
           {{ formatNumber(tecmembrane) || "0" }} Kvm
           {{ formatNumberTo(tecmembraneprice) || "0" }} :-
         </h2>
         <label>Fästmassa</label>
         <h2>
-          {{ formatNumber(rexfixkg) || "0" }} Kg {{ formatNumberTo(rexfixprice) || "0" }}:-
+          {{ formatNumber(rexfixkg) || "0" }} Kg
+          {{ formatNumberTo(rexfixprice) || "0" }}:-
         </h2>
         <label>Fogmassa</label>
         <h2>
-          {{ formatNumber(sealantkg) || "0" }} Kg {{ formatNumberTo(sealantprice) || "0" }}:-
+          {{ formatNumber(sealantkg) || "0" }} Kg
+          {{ formatNumberTo(sealantprice) || "0" }}:-
         </h2>
         <label>Total kostnad mtrl</label>
-        <h2 class="totalpriceall">{{ formatNumberTo(totalpriceall) || "0"}} Kronor</h2>
+        <h2 class="totalpriceall">
+          {{ formatNumberTo(totalpriceall) || "0" }} Kronor
+        </h2>
       </div>
     </div>
   </div>
@@ -160,31 +175,32 @@ export default {
   methods: {
     addPost() {
       let uri = "//localhost:4000/posts/add";
-      this.axios.post(uri, this.post).then(() => { 
-        this.$router.push({ name: "posts" }); 
+      this.axios.post(uri, this.post).then(() => {
+        this.$router.push({ name: "posts" });
       });
     },
-    
-    formatNumberTo(num) { //take away NaN and formate number 
+
+    formatNumberTo(num) {
+      //take away NaN and formate number
       if (isNaN(num)) {
         return null;
       } else {
         return parseFloat(num).toFixed();
       }
     },
-    formatNumber(num) { //take away NaN and formate number to 2 decimals
+    formatNumber(num) {
+      //take away NaN and formate number to 2 decimals
       if (isNaN(num)) {
         return null;
       } else {
         return parseFloat(num).toFixed(2);
       }
     },
-    
   },
   // Calculated values
   computed: {
     resultareawall() {
-      return this.post.wallheight * this.post.wallwidth; 
+      return this.post.wallheight * this.post.wallwidth;
     },
     resultareafloor() {
       return this.post.floorlength * this.post.floorwidth;
@@ -203,12 +219,11 @@ export default {
       );
     },
     resulttilewallquantity() {
-       return this.resultareawall / this.tilesizewall;
+      return this.resultareawall / this.tilesizewall;
     },
     resulttilewallquantitymore() {
-      
       if (this.tilesizewall < 0.02) {
-        return this.resulttilewallquantity * 1.10;
+        return this.resulttilewallquantity * 1.1;
       } else {
         if (this.tilesizewall < 0.04) {
           return this.resulttilewallquantity * 1.12;
@@ -219,25 +234,55 @@ export default {
             if (this.tilesizewall < 0.08) {
               return this.resulttilewallquantity * 1.16;
             } else {
-              if (this.tilesizewall < 0.10) {
+              if (this.tilesizewall < 0.1) {
                 return this.resulttilewallquantity * 1.18;
               } else {
                 if (this.tilesizewall < 0.12) {
-                  return this.resulttilewallquantity * 1.20;
+                  return this.resulttilewallquantity * 1.2;
                 } else {
-                  if(this.tilesizewall < 3.00) {
+                  if (this.tilesizewall < 3.0) {
                     return this.resulttilewallquantity * 1.25;
                   } else {
-                    
                   }
                 }
               }
             }
           }
-        return 0;
+          return 0;
+        }
       }
+    },
+
+    resulttilefloorquantitymore() {
+      if (this.tilesizefloor < 0.02) {
+        return this.resulttilefloorquantity * 1.1;
+      } else {
+        if (this.tilesizefloor < 0.04) {
+          return this.resulttilefloorquantity * 1.12;
+        } else {
+          if (this.tilesizefloor < 0.06) {
+            return this.resulttilefloorquantity * 1.14;
+          } else {
+            if (this.tilesizefloor < 0.08) {
+              return this.resulttilefloorquantity * 1.16;
+            } else {
+              if (this.tilesizefloor < 0.1) {
+                return this.resulttilefloorquantity * 1.18;
+              } else {
+                if (this.tilesizefloor < 0.12) {
+                  return this.resulttilefloorquantity * 1.2;
+                } else {
+                  if (this.tilesizefloor < 3.0) {
+                    return this.resulttilefloorquantity * 1.25;
+                  } else {
+                  }
+                }
+              }
+            }
+          }
+          return 0;
+        }
       }
-      
     },
     resulttilefloorquantity() {
       return this.resultareafloor / this.tilesizefloor;
@@ -264,9 +309,10 @@ export default {
       return this.tecmembraneprice + this.rexfixprice + this.sealantprice;
     },
   },
-//get post from database
+
+  //get post from database
   mounted() {
-    let uri = "//localhost:4000/posts/" + this.$route.params.id; 
+    let uri = "//localhost:4000/posts/" + this.$route.params.id;
     this.axios.get(uri).then((response) => {
       this.post = response.data;
     });
@@ -275,6 +321,10 @@ export default {
 </script>
 
 <style scoped>
+.underline {
+  text-decoration: underline;
+  font-weight: bold;
+}
 textarea {
   width: 100%;
   max-width: 275px;
@@ -334,9 +384,7 @@ form {
 .form-calculate {
   width: 300px;
   flex-direction: row;
-
   margin: 10px auto;
-
   background: white;
   text-align: left;
   padding: 10px;
@@ -353,6 +401,7 @@ label {
   letter-spacing: 1px;
   font-weight: bold;
 }
+
 input,
 select {
   display: block;
