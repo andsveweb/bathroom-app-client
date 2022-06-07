@@ -120,6 +120,10 @@
         <h2>
           {{ formatNumberTo(resulttilewallquantity) || "0" }} st kakelplattor
         </h2>
+        <label>Antal platter plus extra för skärning</label>
+        <h2>
+          {{ formatNumberTo(resulttilewallquantitymore) || "0" }}  st kakelplattor + extra
+        </h2>
         <label>Antal plattor golv</label>
         <h2>{{ formatNumberTo(resulttilefloorquantity) || "0" }} st kakelplattor</h2> 
       </div>
@@ -174,7 +178,8 @@ export default {
       } else {
         return parseFloat(num).toFixed(2);
       }
-    }
+    },
+    
   },
   // Calculated values
   computed: {
@@ -198,7 +203,41 @@ export default {
       );
     },
     resulttilewallquantity() {
-      return this.resultareawall / this.tilesizewall;
+       return this.resultareawall / this.tilesizewall;
+    },
+    resulttilewallquantitymore() {
+      
+      if (this.tilesizewall < 0.02) {
+        return this.resulttilewallquantity * 1.10;
+      } else {
+        if (this.tilesizewall < 0.04) {
+          return this.resulttilewallquantity * 1.12;
+        } else {
+          if (this.tilesizewall < 0.06) {
+            return this.resulttilewallquantity * 1.14;
+          } else {
+            if (this.tilesizewall < 0.08) {
+              return this.resulttilewallquantity * 1.16;
+            } else {
+              if (this.tilesizewall < 0.10) {
+                return this.resulttilewallquantity * 1.18;
+              } else {
+                if (this.tilesizewall < 0.12) {
+                  return this.resulttilewallquantity * 1.20;
+                } else {
+                  if(this.tilesizewall < 3.00) {
+                    return this.resulttilewallquantity * 1.25;
+                  } else {
+                    
+                  }
+                }
+              }
+            }
+          }
+        return 0;
+      }
+      }
+      
     },
     resulttilefloorquantity() {
       return this.resultareafloor / this.tilesizefloor;

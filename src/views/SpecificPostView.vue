@@ -11,7 +11,9 @@
             <p>Skapad: {{ formatDate(post.created_date) }}</p>
           </div>
         </div>
+        
         <div class="router-link-class">
+          
           <router-link class="router-link" :to="{ name: 'posts' }"
             >Tllbaka</router-link
           >
@@ -194,7 +196,7 @@ export default {
       return this.resultareafloor / this.tilesizefloor; //calculation for quantity of tile floor
     },
     tecmembrane() {
-      return this.post.wallheight * 4 + this.resultareafloor; //calculation for tecmembrane
+      return this.post.wallheight * 4 + this.resultareafloor; //calculation for tecmembrane minimum 
     },
     tecmembraneprice() {
       return this.tecmembrane * 191; //calculation for tecmembrane price

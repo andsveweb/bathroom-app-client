@@ -2,6 +2,7 @@
   <div>
     
     <HeaderView />
+    
     <FooterView />
   </div>
 </template>
@@ -14,9 +15,10 @@ import FooterView from "./components/FooterView.vue";
 
 export default {
   components: { // use the HeaderView and footerView component
-    HeaderView,  
+    HeaderView, 
     FooterView,
   },
+  
   
 };
 </script>

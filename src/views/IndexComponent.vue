@@ -9,6 +9,9 @@
         >Skapa ny uträkning</router-link
       >
     </div>
+    <transition name="list" appear>
+    
+    
     <table>
       <thead>
         <tr>
@@ -18,6 +21,14 @@
           <th>Radera</th>
         </tr>
       </thead>
+      <!--if no posts in database show message-->
+      <tbody v-if="posts.length === 0">
+        <tr>
+          <td colspan="4">
+            <p class="no-calculation-saved">Du har inga sparade uträkningar.</p>
+          </td>
+        </tr>
+      </tbody>
       <tbody>
         <tr v-for="post in posts" :key="post._id">
           <td>
@@ -39,13 +50,15 @@
           </td>
           <td>
             <button class="delete" @click.prevent="deletePost(post._id)"> 
-            
-              Radera
+            <i class="fa-solid fa-trash-can"></i>
+
+              
             </button>
           </td>
         </tr>
       </tbody>
     </table>
+    </transition>
   </div>
 </template>
 
@@ -63,10 +76,12 @@ export default {
     let uri = "//localhost:4000/posts"; 
     this.axios.get(uri).then((response) => {
       this.posts = response.data;
+     
+      
     });
     
   },
-  // get the id from the url
+  // get the id  for delete
   methods: {
     deletePost(id) {
       let uri = `//localhost:4000/posts/delete/${id}`; 
@@ -82,6 +97,27 @@ export default {
 </script>
 
 <style scoped>
+.list-enter-from {
+  opacity: 0;
+  transform: scale(0.1);
+}
+.list-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+.list-enter-active {
+  transition: all 0.5s ease;
+}
+.list-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+.no-calculation-saved {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f00;
+  text-align: center;
+}
 .logedinuser {
   color: #4caf50;
   font-size: 1.5rem;
@@ -221,13 +257,13 @@ table {
 
 .delete {
   background-color: #c50d0d;
-  border: 1px solid #ddd;
+  
   padding: 8px;
-  margin: 5px;
+  width: 80px;
   border-radius: 5px;
-  text-decoration: none;
+  
   color: rgb(255, 255, 255);
-  font-size: 1em;
+  font-size: 1.2em;
   cursor: pointer;
   display: block;
   margin: 0 auto;

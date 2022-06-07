@@ -16,16 +16,20 @@
           >Min sida</router-link
         >
       </nav>
-
+  
       <button v-if="user" class="log-btn" @click="$store.dispatch('logout')">
         Logga ut
       </button>
-      <router-link class="router-link-logout" v-else :to="{ name: 'login' }">
+      <router-link class="router-link-login" v-else :to="{ name: 'login' }">
         Logga in
       </router-link>
 
-      <button class="log-btn" @click="back">Tillbaka</button>
-      <button class="log-btn" @click="forward">Frammåt</button>
+      <button class="log-btn" @click="back">
+      <i class="fa-solid fa-arrow-left-long"></i>
+      </button>
+      <button class="log-btn" @click="forward">
+      <i class="fa-solid fa-arrow-right-long"></i>
+      </button>
     </div>
     <router-view />
   </div>
@@ -44,12 +48,6 @@ export default {
       store.dispatch("fetchUser");
     });
   },
-  data: () => {
-    return {
-      mobileView: false,
-      showNav: false,
-    }
-  },
   // toggle logout button
   computed: {
     user() {
@@ -67,6 +65,7 @@ export default {
       this.$router.forward();
     },
   },
+  
 };
 </script>
 
@@ -77,20 +76,22 @@ export default {
   font-weight: bold;
   color: #1ea334;
 }
+
+
 h1 {
   color: white;
 }
-.router-link-logout {
-  color: white;
-  background-color: #fcfcfc;
+.router-link-login {
+  background-color: white;
   border-radius: 5px;
   text-decoration: none;
   color: black;
   text-align: center;
+  padding: 10px;
 }
-.router-link-logout:hover {
-  background-color: #4caf50;
-  color: white;
+.router-link-login:hover {
+  background-color: rgb(21, 168, 53);
+  color: black;
 }
 
 button {

@@ -10,9 +10,7 @@ import {
   signOut,
   getAuth,
   onAuthStateChanged,
-
 } 
-
 
 from "firebase/auth";
 /* creating store */
@@ -31,8 +29,6 @@ export default createStore({
     },
   },
 
-  
-  
 /* actions for login and  with firebase and error handling */ 
   actions: {
     async login({ commit }, details) {
